@@ -63,6 +63,7 @@ import com.android.systemui.settings.dagger.MultiUserUtilsModule;
 import com.android.systemui.shade.ShadeController;
 import com.android.systemui.smartspace.dagger.SmartspaceModule;
 import com.android.systemui.statusbar.CommandQueue;
+import com.android.systemui.statusbar.KeyguardIndicationController;
 import com.android.systemui.statusbar.NotificationLockscreenUserManager;
 import com.android.systemui.statusbar.NotificationMediaManager;
 import com.android.systemui.statusbar.NotificationShadeWindowController;
@@ -107,6 +108,8 @@ import com.google.android.systemui.smartspace.BcSmartspaceDataProvider;
 import com.google.android.systemui.smartspace.KeyguardMediaViewController;
 import com.google.android.systemui.smartspace.KeyguardSmartspaceController;
 import com.google.android.systemui.smartspace.KeyguardZenAlarmViewController;
+
+import com.superior.android.systemui.statusbar.KeyguardIndicationControllerSuperior;
 
 import java.util.Optional;
 import java.util.concurrent.Executor;
@@ -187,6 +190,9 @@ public abstract class SystemUIModule {
     @Binds
     public abstract NotificationRowBinder bindNotificationRowBinder(
             NotificationRowBinderImpl notificationRowBinder);
+
+    @Binds
+    abstract KeyguardIndicationController bindKeyguardIndicationController(KeyguardIndicationControllerSuperior impl);
 
     @SysUISingleton
     @Provides

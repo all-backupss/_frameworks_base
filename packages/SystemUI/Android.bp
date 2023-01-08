@@ -127,6 +127,7 @@ android_library {
         "LowLightDreamLib",
         "bcsmartspace-google",
         "vendor.lineage.powershare-V1.0-java",
+        "adaptivecharging",
     ],
     manifest: "AndroidManifest.xml",
 
