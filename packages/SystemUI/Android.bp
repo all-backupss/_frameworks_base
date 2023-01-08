@@ -179,6 +179,7 @@ android_library {
         "motion_tool_lib",
         "bcsmartspace-google",
         "vendor.lineage.powershare-V1.0-java",
+        "adaptivecharging",
     ],
     manifest: "AndroidManifest.xml",
 

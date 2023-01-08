@@ -196,7 +196,6 @@ import com.android.systemui.statusbar.CircleReveal;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.GestureRecorder;
 import com.android.systemui.statusbar.KeyboardShortcuts;
-import com.android.systemui.statusbar.KeyguardIndicationController;
 import com.android.systemui.statusbar.LiftReveal;
 import com.android.systemui.statusbar.LightRevealScrim;
 import com.android.systemui.statusbar.LockscreenShadeTransitionController;
@@ -262,6 +261,8 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import com.superior.android.systemui.statusbar.KeyguardIndicationControllerSuperior;
 
 import dagger.Lazy;
 
@@ -524,7 +525,7 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
     // settings
     private QSPanelController mQSPanelController;
 
-    KeyguardIndicationController mKeyguardIndicationController;
+    KeyguardIndicationControllerSuperior mKeyguardIndicationController;
 
     private View mReportRejectedTouch;
 
@@ -768,7 +769,7 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
             ExtensionController extensionController,
             UserInfoControllerImpl userInfoControllerImpl,
             PhoneStatusBarPolicy phoneStatusBarPolicy,
-            KeyguardIndicationController keyguardIndicationController,
+            KeyguardIndicationControllerSuperior keyguardIndicationController,
             DemoModeController demoModeController,
             Lazy<NotificationShadeDepthController> notificationShadeDepthControllerLazy,
             StatusBarTouchableRegionManager statusBarTouchableRegionManager,
