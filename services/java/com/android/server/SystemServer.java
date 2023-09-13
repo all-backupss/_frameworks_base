@@ -137,6 +137,8 @@ import com.android.server.input.InputManagerService;
 import com.android.server.inputmethod.InputMethodManagerService;
 import com.android.server.integrity.AppIntegrityManagerService;
 import com.android.server.lights.LightsService;
+import com.android.server.lineage.LineageHardwareService;
+import com.android.server.lineage.health.HealthInterfaceService;
 import com.android.server.locales.LocaleManagerService;
 import com.android.server.location.LocationManagerService;
 import com.android.server.logcat.LogcatManagerService;
@@ -215,7 +217,6 @@ import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.ActivityTaskManagerService;
 import com.android.server.wm.WindowManagerGlobalLock;
 import com.android.server.wm.WindowManagerService;
-import com.android.server.lineage.health.HealthInterfaceService;
 
 import dalvik.system.VMRuntime;
 
@@ -911,7 +912,7 @@ public final class SystemServer implements Dumpable {
             mDumper.addDumpable(tp);
 
             // Load preinstalled system fonts for system server, so that WindowManagerService, etc
-            // can start using Typeface. Note that fonts are required not only for text rendering,
+            // can start using Typeface. Note that fonts are reqruired not only for text rendering,
             // but also for some text operations (e.g. TextUtils.makeSafeForPresentation()).
             if (Typeface.ENABLE_LAZY_TYPEFACE_INITIALIZATION) {
                 Typeface.loadPreinstalledSystemFontMap();
@@ -2545,16 +2546,15 @@ public final class SystemServer implements Dumpable {
                 t.traceBegin("StartLineageHardwareService");
                 mSystemServiceManager.startService(LineageHardwareService.class);
                 t.traceEnd();
-            }
-            if (!context.getResources().getString(
-                    com.android.internal.R.string.config_pocketBridgeSysfsInpocket).isEmpty()) {
-                t.traceBegin("StartPocketBridgeService");
-                mSystemServiceManager.startService(PocketBridgeService.class);
-                t.traceEnd();
-                t.traceBegin("StartHealthService");
-                mSystemServiceManager.startService(HealthInterfaceService.class);
-                t.traceEnd();
-            }
+                
+                 }
+
+                  if (context.getResources().getBoolean(
+                        com.android.internal.R.bool.config_lineageHealthSupported)) {
+                    t.traceBegin("StartHealthService");
+                    mSystemServiceManager.startService(HealthInterfaceService.class);
+                    t.traceEnd();
+           }
 
         }
 
